@@ -1,0 +1,28 @@
+1. ResNet50 (fast + baseline)
+--------------------------------
+MODEL_NAME      = "resnet50"
+IMAGE_SIZE      = 224
+BATCH_SIZE      = 32
+LEARNING_RATE   = 0.0003
+NUM_EPOCHS      = 40
+PATIENCE        = 6
+
+
+2. EfficientNet-B4 (best accuracy + best generalization)
+-------------------------------------------------------
+MODEL_NAME      = "efficientnet_b4"
+IMAGE_SIZE      = 380
+BATCH_SIZE      = 16
+LEARNING_RATE   = 0.0002
+NUM_EPOCHS      = 35
+PATIENCE        = 5
+
+3.  Inception-V3 (good performance on medical images)
+--------------------------------------------------------
+MODEL_NAME      = "inception_v3"
+IMAGE_SIZE      = 299
+BATCH_SIZE      = 24
+LEARNING_RATE   = 0.0003
+NUM_EPOCHS      = 35
+PATIENCE        = 6
+------------------------------
