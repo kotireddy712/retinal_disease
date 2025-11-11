@@ -68,10 +68,8 @@ def get_transforms(image_size=224, is_training=True):
     ])
 
 
-
 def get_data_loaders():
     """Creates train + validation DataLoaders"""
-
     cfg = Config()
     torch.manual_seed(cfg.SEED)
 
@@ -88,17 +86,16 @@ def get_data_loaders():
 
     train_data, val_data = random_split(dataset, [train_size, val_size])
 
-    # Validation should NOT apply augmentation
+    # Validation transform (NO augmentation)
     val_data.dataset.transform = get_transforms(cfg.IMAGE_SIZE, False)
 
-    # ✅ FIX — required for Inception-V3 (no batch of 1 allowed)
     train_loader = DataLoader(
         train_data,
         batch_size=cfg.BATCH_SIZE,
         shuffle=True,
         num_workers=cfg.NUM_WORKERS,
         pin_memory=cfg.PIN_MEMORY,
-        drop_last=True        # <--- IMPORTANT FIX
+        drop_last=True,     # ✅ fixes Inception batch issue
     )
 
     val_loader = DataLoader(
@@ -107,7 +104,30 @@ def get_data_loaders():
         shuffle=False,
         num_workers=cfg.NUM_WORKERS,
         pin_memory=cfg.PIN_MEMORY,
-        drop_last=True        # <--- IMPORTANT FIX
+        drop_last=True,     # ✅ same fix for val during training
     )
 
     return train_loader, val_loader
+
+
+def get_eval_loader():
+    """Loader used ONLY for evaluation / testing — MUST NOT drop last batch"""
+    cfg = Config()
+
+    df = pd.read_csv(cfg.TRAIN_CSV)
+
+    dataset = RetinalDataset(
+        dataframe=df,
+        img_dir=cfg.TRAIN_DIR,
+        transform=get_transforms(cfg.IMAGE_SIZE, False),
+        is_test=False
+    )
+
+    return DataLoader(
+        dataset,
+        batch_size=cfg.BATCH_SIZE,
+        shuffle=False,
+        num_workers=cfg.NUM_WORKERS,
+        pin_memory=cfg.PIN_MEMORY,
+        drop_last=False      # ✅ DO NOT DROP — required for evaluation metrics
+    )

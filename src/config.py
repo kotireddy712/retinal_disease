@@ -19,7 +19,7 @@ class Config:
 
     # ✅ Model to train → change this to test different models:
     # Options: "resnet50", "efficientnet_b4", "inception_v3"
-    MODEL_NAME = "inception_v3"
+    MODEL_NAME = "efficientnet_b4"
     PRETRAINED = True
 
     # ✅ Save model separately based on architecture
@@ -32,13 +32,13 @@ class Config:
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
     # ✅ Training hyperparameters
-    IMAGE_SIZE = 299               # 224 for ResNet/Inception, 380 for EfficientNet
+    IMAGE_SIZE = 380 #299               # 224 for ResNet/Inception, 380 for EfficientNet
     NUM_CLASSES = 5
-    BATCH_SIZE = 24
+    BATCH_SIZE = 16 #24
     NUM_EPOCHS = 35
-    LEARNING_RATE = 0.0003
+    LEARNING_RATE = 0.0002 #0.0003
     WEIGHT_DECAY = 1e-4
-    PATIENCE = 6
+    PATIENCE = 5 #6
 
     # ✅ Data split
     TRAIN_SPLIT = 0.8
