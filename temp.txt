@@ -1,0 +1,102 @@
+🚀 Starting Training...
+✅ Loading ResNet50 pretrained model...
+Downloading: "https://download.pytorch.org/models/resnet50-11ad3fa6.pth" to /root/.cache/torch/hub/checkpoints/resnet50-11ad3fa6.pth
+100% 97.8M/97.8M [00:00<00:00, 196MB/s]
+
+📌 Epoch 1/25
+--------------------------------------------------
+Training: 100% 92/92 [12:11<00:00,  7.95s/it, loss=0.7899, acc=73.81%]
+Validation: 100% 23/23 [02:58<00:00,  7.75s/it, loss=0.5495, acc=76.81%]
+✅ Train Loss: 0.7437 | Train Accuracy: 73.81%
+🔍 Val Loss: 0.6026 | Val Accuracy: 76.81%
+💾 Saved Best Model (Val Accuracy: 76.81%)
+
+📌 Epoch 2/25
+--------------------------------------------------
+Training: 100% 92/92 [05:27<00:00,  3.56s/it, loss=0.5279, acc=80.37%]
+Validation: 100% 23/23 [01:17<00:00,  3.37s/it, loss=0.6006, acc=73.94%]
+✅ Train Loss: 0.5387 | Train Accuracy: 80.37%
+🔍 Val Loss: 0.7375 | Val Accuracy: 73.94%
+
+📌 Epoch 3/25
+--------------------------------------------------
+Training: 100% 92/92 [05:24<00:00,  3.52s/it, loss=0.6500, acc=83.34%]
+Validation: 100% 23/23 [01:17<00:00,  3.38s/it, loss=0.4173, acc=81.31%]
+✅ Train Loss: 0.4514 | Train Accuracy: 83.34%
+🔍 Val Loss: 0.5030 | Val Accuracy: 81.31%
+💾 Saved Best Model (Val Accuracy: 81.31%)
+
+📌 Epoch 4/25
+--------------------------------------------------
+Training: 100% 92/92 [05:27<00:00,  3.56s/it, loss=0.5941, acc=85.29%]
+Validation: 100% 23/23 [01:17<00:00,  3.36s/it, loss=0.5119, acc=77.90%]
+✅ Train Loss: 0.3983 | Train Accuracy: 85.29%
+🔍 Val Loss: 0.5556 | Val Accuracy: 77.90%
+
+📌 Epoch 5/25
+--------------------------------------------------
+Training: 100% 92/92 [05:26<00:00,  3.54s/it, loss=0.4699, acc=85.76%]
+Validation: 100% 23/23 [01:17<00:00,  3.37s/it, loss=0.3532, acc=80.35%]
+✅ Train Loss: 0.3788 | Train Accuracy: 85.76%
+🔍 Val Loss: 0.5668 | Val Accuracy: 80.35%
+
+📌 Epoch 6/25
+--------------------------------------------------
+Training: 100% 92/92 [05:24<00:00,  3.53s/it, loss=0.3408, acc=89.04%]
+Validation: 100% 23/23 [01:17<00:00,  3.37s/it, loss=0.3884, acc=82.26%]
+✅ Train Loss: 0.3028 | Train Accuracy: 89.04%
+🔍 Val Loss: 0.5991 | Val Accuracy: 82.26%
+💾 Saved Best Model (Val Accuracy: 82.26%)
+
+📌 Epoch 7/25
+--------------------------------------------------
+Training: 100% 92/92 [05:27<00:00,  3.56s/it, loss=0.1498, acc=90.82%]
+Validation: 100% 23/23 [01:17<00:00,  3.37s/it, loss=0.5569, acc=73.67%]
+✅ Train Loss: 0.2605 | Train Accuracy: 90.82%
+🔍 Val Loss: 0.7835 | Val Accuracy: 73.67%
+
+📌 Epoch 8/25
+--------------------------------------------------
+Training: 100% 92/92 [05:23<00:00,  3.51s/it, loss=0.2081, acc=91.40%]
+Validation: 100% 23/23 [01:18<00:00,  3.42s/it, loss=0.2959, acc=83.08%]
+✅ Train Loss: 0.2419 | Train Accuracy: 91.40%
+🔍 Val Loss: 0.5311 | Val Accuracy: 83.08%
+💾 Saved Best Model (Val Accuracy: 83.08%)
+
+📌 Epoch 9/25
+--------------------------------------------------
+Training: 100% 92/92 [05:26<00:00,  3.55s/it, loss=0.2625, acc=94.81%]
+Validation: 100% 23/23 [01:17<00:00,  3.37s/it, loss=0.5616, acc=78.72%]
+✅ Train Loss: 0.1561 | Train Accuracy: 94.81%
+🔍 Val Loss: 0.7102 | Val Accuracy: 78.72%
+
+📌 Epoch 10/25
+--------------------------------------------------
+Training: 100% 92/92 [05:25<00:00,  3.53s/it, loss=0.3358, acc=95.49%]
+Validation: 100% 23/23 [01:17<00:00,  3.37s/it, loss=0.5459, acc=81.45%]
+✅ Train Loss: 0.1395 | Train Accuracy: 95.49%
+🔍 Val Loss: 0.6520 | Val Accuracy: 81.45%
+
+📌 Epoch 11/25
+--------------------------------------------------
+Training: 100% 92/92 [05:26<00:00,  3.55s/it, loss=0.1717, acc=96.21%]
+Validation: 100% 23/23 [01:17<00:00,  3.38s/it, loss=0.5410, acc=82.81%]
+✅ Train Loss: 0.1236 | Train Accuracy: 96.21%
+🔍 Val Loss: 0.6490 | Val Accuracy: 82.81%
+
+📌 Epoch 12/25
+--------------------------------------------------
+Training: 100% 92/92 [05:29<00:00,  3.58s/it, loss=0.0349, acc=95.53%]
+Validation: 100% 23/23 [01:19<00:00,  3.45s/it, loss=0.7801, acc=76.67%]
+✅ Train Loss: 0.1217 | Train Accuracy: 95.53%
+🔍 Val Loss: 0.9868 | Val Accuracy: 76.67%
+
+📌 Epoch 13/25
+--------------------------------------------------
+Training: 100% 92/92 [05:26<00:00,  3.55s/it, loss=0.0640, acc=96.45%]
+Validation: 100% 23/23 [01:19<00:00,  3.45s/it, loss=0.5921, acc=79.81%]
+✅ Train Loss: 0.1102 | Train Accuracy: 96.45%
+🔍 Val Loss: 0.8039 | Val Accuracy: 79.81%
+⛔ Early stopping triggered!
+
+🎉 Training completed! Best Validation Accuracy = 83.08%
