@@ -18,7 +18,7 @@ class Config:
     TEST_CSV = os.path.join(DATA_DIR, "test.csv")
 
     # ✅ Model to train → change this to test different models:
-    # Options: "resnet50", "efficientnet_b4", "inception_v3"
+    # Options: "resnet50", "efficientnet_b4", // done  - "inception_v3"
     MODEL_NAME = "efficientnet_b4"
     PRETRAINED = True
 

@@ -14,8 +14,11 @@ from sklearn.metrics import (
 from sklearn.preprocessing import label_binarize
 
 
+# ==========================================================
+#  EVALUATION FUNCTION
+# ==========================================================
 def evaluate_model(model, dataloader, device, class_names):
-    """Runs inference and calculates core metrics"""
+    """Runs inference and calculates accuracy, precision, recall, F1"""
 
     model.eval()
     all_preds, all_labels, all_probs = [], [], []
@@ -26,7 +29,7 @@ def evaluate_model(model, dataloader, device, class_names):
 
             outputs = model(images)
 
-            # ✅ Inception returns tuple
+            # Inception returns (logits, aux_logits)
             if isinstance(outputs, tuple):
                 outputs = outputs[0]
 
@@ -63,29 +66,39 @@ def evaluate_model(model, dataloader, device, class_names):
     }
 
 
+# ==========================================================
+#  CONFUSION MATRIX PLOT
+# ==========================================================
 def plot_confusion_matrix(labels, predictions, class_names, save_path=None):
-    """Plot confusion matrix"""
+
     cm = confusion_matrix(labels, predictions)
 
     plt.figure(figsize=(10, 7))
-    sns.heatmap(cm, annot=True, cmap="Blues",
-                xticklabels=class_names, yticklabels=class_names,
-                fmt='d')
+    sns.heatmap(
+        cm,
+        annot=True,
+        cmap="Blues",
+        xticklabels=class_names,
+        yticklabels=class_names,
+        fmt="d",
+    )
 
     plt.title("Confusion Matrix")
-    plt.xlabel("Predicted")
-    plt.ylabel("Actual")
-    plt.tight_layout()
+    plt.xlabel("Predicted Label")
+    plt.ylabel("True Label")
 
     if save_path:
-        plt.savefig(save_path, dpi=300)
-        print(f"📁 Saved: {save_path}")
+        plt.savefig(save_path, dpi=300, bbox_inches="tight")
+        print(f"📁 Confusion Matrix Saved: {save_path}")
 
     plt.show()
 
 
+# ==========================================================
+#  ROC CURVE
+# ==========================================================
 def plot_roc_curves(labels, probabilities, class_names, save_path=None):
-    """Generate ROC-AUC for multi-class"""
+
     labels_bin = label_binarize(labels, classes=list(range(len(class_names))))
 
     fpr, tpr, roc_auc = {}, {}, {}
@@ -95,8 +108,14 @@ def plot_roc_curves(labels, probabilities, class_names, save_path=None):
         roc_auc[i] = auc(fpr[i], tpr[i])
 
     plt.figure(figsize=(10, 7))
+
     for i in range(len(class_names)):
-        plt.plot(fpr[i], tpr[i], lw=2, label=f"{class_names[i]} (AUC: {roc_auc[i]:.2f})")
+        plt.plot(
+            fpr[i],
+            tpr[i],
+            lw=2,
+            label=f"{class_names[i]} (AUC = {roc_auc[i]:.2f})"
+        )
 
     plt.plot([0, 1], [0, 1], "k--")
     plt.xlabel("False Positive Rate")
@@ -105,13 +124,59 @@ def plot_roc_curves(labels, probabilities, class_names, save_path=None):
     plt.legend()
 
     if save_path:
-        plt.savefig(save_path, dpi=300)
-        print(f"📁 Saved: {save_path}")
+        plt.savefig(save_path, dpi=300, bbox_inches="tight")
+        print(f"📁 ROC Curve Saved: {save_path}")
 
     plt.show()
 
 
+# ==========================================================
+#  PRINT CLASSIFICATION REPORT
+# ==========================================================
 def print_classification_report(labels, predictions, class_names):
     print("\n=== Classification Report ===")
     print(classification_report(labels, predictions, target_names=class_names))
     print("=" * 50)
+
+
+
+# ==========================================================
+#  MAIN ENTRY — THIS MAKES evaluation RUN
+# ==========================================================
+if __name__ == "__main__":
+    print("🔍 Starting Model Evaluation...\n")
+
+    from config import Config
+    from model import build_model
+    from dataset import get_data_loaders
+
+    cfg = Config()
+
+    # Load validation loader only
+    _, val_loader = get_data_loaders()
+
+    # Build model and load weights
+    model = build_model()
+    model.load_state_dict(torch.load(cfg.MODEL_SAVE_PATH, map_location=cfg.DEVICE))
+    model.to(cfg.DEVICE)
+
+    print(f"📁 Loaded model from: {cfg.MODEL_SAVE_PATH}")
+
+    # Run evaluation
+    results = evaluate_model(model, val_loader, cfg.DEVICE, cfg.CLASS_NAMES)
+
+    # Detailed report
+    print_classification_report(
+        results["labels"], results["predictions"], cfg.CLASS_NAMES
+    )
+
+    # Plots
+    plot_confusion_matrix(
+        results["labels"], results["predictions"], cfg.CLASS_NAMES,
+        save_path=f"{cfg.OUTPUT_DIR}/confusion_matrix.png"
+    )
+
+    plot_roc_curves(
+        results["labels"], results["probabilities"], cfg.CLASS_NAMES,
+        save_path=f"{cfg.OUTPUT_DIR}/roc_curves.png"
+    )
