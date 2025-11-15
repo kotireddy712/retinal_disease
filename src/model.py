@@ -6,7 +6,7 @@ Supports: ResNet50 / EfficientNet-B4 / Inception-V3
 import torch
 import torch.nn as nn
 import torchvision.models as models
-from config import Config
+from src.config import Config   # ✅ FIXED IMPORT
 
 
 def build_model():
@@ -34,13 +34,13 @@ def build_model():
         model.classifier[1] = nn.Linear(num_features, cfg.NUM_CLASSES)
 
     # ------------------------------------------------------------
-    # ✅ INCEPTION-V3 (aux logits enabled but ignored in training)
+    # ✅ INCEPTION-V3
     # ------------------------------------------------------------
     elif model_name == "inception_v3":
         print("✅ Loading Inception-V3 pretrained model...")
         model = models.inception_v3(
             weights=models.Inception_V3_Weights.IMAGENET1K_V1,
-            aux_logits=True  # <-- MUST STAY TRUE (torchvision restriction)
+            aux_logits=True  # must stay True
         )
         num_features = model.fc.in_features
         model.fc = nn.Linear(num_features, cfg.NUM_CLASSES)

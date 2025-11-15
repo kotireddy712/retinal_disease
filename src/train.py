@@ -11,7 +11,7 @@ import os
 
 from dataset import get_data_loaders        # ✅ dataset.py
 from model import build_model               # ✅ model.py
-from config import Config                   # ✅ config.py
+from src.config import Config                   # ✅ config.py
 
 
 # --------------------------------------------------------

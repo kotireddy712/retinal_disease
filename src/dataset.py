@@ -8,7 +8,7 @@ from torch.utils.data import Dataset, DataLoader, random_split
 from PIL import Image
 import pandas as pd
 from torchvision import transforms
-from config import Config
+from src.config import Config
 
 
 class RetinalDataset(Dataset):

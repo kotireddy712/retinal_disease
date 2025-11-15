@@ -7,7 +7,7 @@ import os
 import pandas as pd
 from PIL import Image
 from torchvision import transforms
-from config import Config
+from src.config import Config
 from model import build_model
 
 
