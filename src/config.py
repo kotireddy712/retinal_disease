@@ -9,7 +9,7 @@ import os
 class Config:
 
     # ---------------------------------------------------------
-    # 🔥 AUTO-DETECT PROJECT ROOT (BEST OPTION)
+    # 🔥 AUTO-DETECT PROJECT ROOT
     # ---------------------------------------------------------
     BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
@@ -22,7 +22,11 @@ class Config:
 
     TRAIN_CSV = os.path.join(DATA_DIR, "train.csv")
     TEST_CSV = os.path.join(DATA_DIR, "test.csv")
-    PSEUDO_TRAIN_CSV = os.path.join(DATA_DIR, "train_pseudo.csv")
+
+    # Pseudo-labeling files
+    PSEUDO_LABELS_CSV = os.path.join(DATA_DIR, "pseudo_labels_round1.csv")
+    MIXED_TRAIN_CSV = os.path.join(DATA_DIR, "train_mixed_round1.csv")
+
     # ---------------------------------------------------------
     # Model Selection
     # ---------------------------------------------------------
